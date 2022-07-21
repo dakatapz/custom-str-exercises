@@ -45,14 +45,27 @@ int strncmp1 (char *s, char *t, int n){
   return 0;
 }
 
+int strncpy1 (char *s, char *t, int n)
+{
+  int i, k;
+  k = strlen(t) - n;
+  for ( i = 0; i < n; i++)
+    *(s + i) = *(t+k+i);
+  if (*s != '\0')
+    return 1;
+  return 0;
+}
+
 void main (void) {
  char *str1 = "my test";
  char *str2 = "pk";
- char *my_strcat;
+ char *my_strcat, *test_strncpy1;
  my_strcat = malloc(strlen(str1) + 1); 
- int len1 = 0, len2 = 0, len = 0, i, k;
+ int len1 = 0, len2 = 0, len = 0, i, k, l, p=4;
  len1 = strlen(str1);
  len2 = strlen(str2);
+
+ test_strncpy1 = malloc(p);
 
  len = len1 + len2;
  printf("first string is: %s\n",  str1);
@@ -71,4 +84,10 @@ void main (void) {
     printf("first n characters of str2 are found in str1\n");
  else
     printf("none of the N characters match\n");
+
+ if (l = strncpy1(test_strncpy1, str1, p))
+    printf("%s\n", test_strncpy1);
+ else
+    printf("ERROR!\n");
+ free(test_strncpy1);
 }
